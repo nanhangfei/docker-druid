@@ -1,0 +1,214 @@
+{
+  "type": "index_hadoop",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "wide_purchase_material_druid",
+      "parser": {
+        "type": "hadoopyString",
+        "parseSpec": {
+          "format": "csv",
+          "dimensionsSpec": {
+            "dimensions": [
+              "order_no",
+              "order_po",
+              "date_id",
+              "datatime",
+              "year_id",
+              "month_of_year",
+              "day_of_month",
+              "day_of_week",
+              "date_no",
+              "month_no",
+              "week_of_year",
+              "week_of_month",
+              "first_day_of_week",
+              "first_day_of_week_short",
+              "quarter_id",
+              "0purch_org_key",
+              "0pur_group_key",
+              "0plant_key",
+              "factory_name",
+              "factory_location",
+              "factory_longitude",
+              "factory_latitude",
+              "0stor_loc_key",
+              "0movetype_key",
+              "0me_orgidtp_key",
+              "supplier_id",
+              "supplier_name",
+              "supplier_location",
+              "supplier_city",
+              "supplier_longitude",
+              "supplier_latitude",
+              "material_type",
+              "zwldl_key",
+              "zmaterial__0employee_sid",
+              "employee_name",
+              "material_id",
+              "material_name",
+              "material_spec",
+              "quantity",
+              "amountvr",
+              "amount",
+              "budget_price",
+              "last_year_price",
+              "market_price",
+              "0unit_key",
+              "unit_desc",
+              "0doc_year_sid",
+              "0doc_num_key",
+              "0doc_item_sid"
+            ]
+          },
+          "columns": [
+            "order_no",
+            "order_po",
+            "date_id",
+            "datatime",
+            "year_id",
+            "month_of_year",
+            "day_of_month",
+            "day_of_week",
+            "date_no",
+            "month_no",
+            "week_of_year",
+            "week_of_month",
+            "first_day_of_week",
+            "first_day_of_week_short",
+            "quarter_id",
+            "0purch_org_key",
+            "0pur_group_key",
+            "0plant_key",
+            "factory_name",
+            "factory_location",
+            "factory_longitude",
+            "factory_latitude",
+            "0stor_loc_key",
+            "0movetype_key",
+            "0me_orgidtp_key",
+            "supplier_id",
+            "supplier_name",
+            "supplier_location",
+            "supplier_city",
+            "supplier_longitude",
+            "supplier_latitude",
+            "material_type",
+            "zwldl_key",
+            "zmaterial__0employee_sid",
+            "employee_name",
+            "material_id",
+            "material_name",
+            "material_spec",
+            "quantity",
+            "amountvr",
+            "amount",
+            "budget_price",
+            "last_year_price",
+            "market_price",
+            "0unit_key",
+            "unit_desc",
+            "0doc_year_sid",
+            "0doc_num_key",
+            "0doc_item_sid"
+          ],
+          "timestampSpec": {
+            "format": "auto",
+            "column": "datatime"
+          }
+        }
+      },
+      "metricsSpec": [],
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "YEAR",
+        "queryGranularity": {
+          "type": "none"
+        },
+        "rollup": false
+      },
+      "transformSpec": {
+        "filter": null,
+        "transforms": []
+      }
+    },
+    "ioConfig": {
+      "type": "hadoop",
+      "inputSpec": {
+        "type": "static",
+        "paths": "/user/hive/warehouse/purchase.db/wide_purchase_material_druid/000000_0"
+      },
+      "appendToExisting" : false,
+      "metadataUpdateSpec": null,
+      "segmentOutputPath": null
+    },
+    "tuningConfig": {
+      "type": "hadoop",
+      "workingPath": null,
+      "partitionsSpec": {
+        "type": "hashed",
+        "maxRowsPerSegment": 5000000,
+        "numShards": null,
+        "partitionDimensions": []
+      },
+      "shardSpecs": {},
+      "indexSpec": {
+        "bitmap": {
+          "type": "concise"
+        },
+        "dimensionCompression": "lz4",
+        "metricCompression": "lz4",
+        "longEncoding": "longs"
+      },
+      "indexSpecForIntermediatePersists": {
+        "bitmap": {
+          "type": "concise"
+        },
+        "dimensionCompression": "lz4",
+        "metricCompression": "lz4",
+        "longEncoding": "longs"
+      },
+      "maxRowsInMemory": 1000000,
+      "maxBytesInMemory": 0,
+      "leaveIntermediate": false,
+      "cleanupOnFailure": true,
+      "overwriteFiles": false,
+      "ignoreInvalidRows": false,
+      "jobProperties": {
+        "fs.default.name": "hdfs://dt-master:8020",
+        "fs.defaultFS": "hdfs://dt-master:8020",
+        "dfs.datanode.address": "dt-master",
+        "dfs.client.use.datanode.hostname": "true",
+        "dfs.datanode.use.datanode.hostname": "true",
+        "yarn.resourcemanager.hostname": "dt-master",
+        "yarn.nodemanager.vmem-check-enabled": "false",
+        "mapreduce.map.java.opts": "-Duser.timezone=UTC -Dfile.encoding=UTF-8",
+        "mapreduce.job.user.classpath.first": "true",
+        "mapreduce.reduce.java.opts": "-Duser.timezone=UTC -Dfile.encoding=UTF-8",
+        "mapreduce.map.memory.mb": "1024",
+        "mapreduce.reduce.memory.mb": "1024"
+      },
+      "combineText": false,
+      "useCombiner": false,
+      "buildV9Directly": true,
+      "numBackgroundPersistThreads": 0,
+      "forceExtendableShardSpecs": true,
+      "useExplicitVersion": false,
+      "allowedHadoopPrefix": [],
+      "logParseExceptions": false,
+      "maxParseExceptions": 0,
+      "useYarnRMJobStatusFallback": true
+    }
+  },
+  "hadoopDependencyCoordinates": [
+    "org.apache.hadoop:hadoop-client:2.8.3"
+  ],
+  "classpathPrefix": null,
+  "context": {
+    "forceTimeChunkLock": true
+  },
+  "dataSource": "wide_purchase_material_druid",
+  "resource": {
+    "availabilityGroup": "wide_purchase_material_druid_2020-01-07T10:13:36.003Z",
+    "requiredCapacity": 1
+  }
+}

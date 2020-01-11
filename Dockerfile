@@ -17,6 +17,9 @@ RUN curl -fsLS "https://www.apache.org/dyn/closer.cgi?filename=/zookeeper/zookee
 
 ADD config/common.runtime.properties conf/druid/single-server/micro-quickstart/_common/common.runtime.properties
 
+RUN mkdir -p conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
+ADD hadoop_xml/*.xml conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
+
 # RUN bash -c "./bin/start-micro-quickstart &" && \
 #    ./bin/post-index-task --file quickstart/tutorial/wikipedia-index.json --url http://localhost:8081 --submit-timeout 600
 

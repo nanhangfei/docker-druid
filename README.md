@@ -21,10 +21,15 @@ To build the docker image yourself
 ```sh
 git clone https://github.com/Fokko/docker-druid.git
 cd docker-druid
-docker build -t docker-druid .
-docker run --rm -i -p 8888:8888 docker-druid
+docker build -t docker-druid:hdfs .
+docker run --rm -i -p 8888:8888 docker-druid:hdfs
 ```
-
+## 推送到阿里云镜像仓库
+```
+docker login registry.cn-hangzhou.aliyuncs.com
+docker tag docker-druid:hdfs registry.cn-hangzhou.aliyuncs.com/thundersdata-public/docker-druid:hdfs 
+docker push  registry.cn-hangzhou.aliyuncs.com/thundersdata-public/docker-druid:hdfs 
+```
 ## Logging
 
 You might want to look into the logs when debugging the Druid processes. This can be done by logging into the container using `docker ps`:

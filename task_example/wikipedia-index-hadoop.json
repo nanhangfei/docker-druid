@@ -1,0 +1,147 @@
+{
+  "type": "index_hadoop",
+  "spec": {
+    "dataSchema": {
+      "dataSource": "wikipedia",
+      "parser": {
+        "type": "hadoopyString",
+        "parseSpec": {
+          "format": "json",
+          "dimensionsSpec": {
+            "dimensions": [
+              "channel",
+              "cityName",
+              "comment",
+              "countryIsoCode",
+              "countryName",
+              "isAnonymous",
+              "isMinor",
+              "isNew",
+              "isRobot",
+              "isUnpatrolled",
+              "metroCode",
+              "namespace",
+              "page",
+              "regionIsoCode",
+              "regionName",
+              "user",
+              {
+                "name": "added",
+                "type": "long"
+              },
+              {
+                "name": "deleted",
+                "type": "long"
+              },
+              {
+                "name": "delta",
+                "type": "long"
+              }
+            ]
+          },
+          "timestampSpec": {
+            "format": "auto",
+            "column": "time"
+          }
+        }
+      },
+      "metricsSpec": [],
+      "granularitySpec": {
+        "type": "uniform",
+        "segmentGranularity": "DAY",
+        "queryGranularity": {
+          "type": "none"
+        },
+        "rollup": false,
+        "intervals": [
+          "2015-09-12T00:00:00.000Z/2015-09-13T00:00:00.000Z"
+        ]
+      },
+      "transformSpec": {
+        "filter": null,
+        "transforms": []
+      }
+    },
+    "ioConfig": {
+      "type": "hadoop",
+      "inputSpec": {
+        "type": "static",
+        "paths": "/quickstart/wikiticker-2015-09-12-sampled.json.gz"
+      },
+      "metadataUpdateSpec": null,
+      "segmentOutputPath": null
+    },
+    "tuningConfig": {
+      "type": "hadoop",
+      "workingPath": null,
+      "version": "2020-01-07T10:13:35.987Z",
+      "partitionsSpec": {
+        "type": "hashed",
+        "maxRowsPerSegment": 5000000,
+        "numShards": null,
+        "partitionDimensions": []
+      },
+      "shardSpecs": {},
+      "indexSpec": {
+        "bitmap": {
+          "type": "concise"
+        },
+        "dimensionCompression": "lz4",
+        "metricCompression": "lz4",
+        "longEncoding": "longs"
+      },
+      "indexSpecForIntermediatePersists": {
+        "bitmap": {
+          "type": "concise"
+        },
+        "dimensionCompression": "lz4",
+        "metricCompression": "lz4",
+        "longEncoding": "longs"
+      },
+      "maxRowsInMemory": 1000000,
+      "maxBytesInMemory": 0,
+      "leaveIntermediate": false,
+      "cleanupOnFailure": true,
+      "overwriteFiles": false,
+      "ignoreInvalidRows": false,
+      "jobProperties": {
+        "fs.default.name": "hdfs://dt-master:8020",
+        "fs.defaultFS": "hdfs://dt-master:8020",
+        "dfs.datanode.address": "dt-master",
+        "dfs.client.use.datanode.hostname": "true",
+        "dfs.datanode.use.datanode.hostname": "true",
+        "yarn.resourcemanager.hostname": "dt-master",
+        "yarn.nodemanager.vmem-check-enabled": "false",
+        "mapreduce.map.java.opts": "-Duser.timezone=UTC -Dfile.encoding=UTF-8",
+        "mapreduce.job.user.classpath.first": "true",
+        "mapreduce.reduce.java.opts": "-Duser.timezone=UTC -Dfile.encoding=UTF-8",
+        "mapreduce.map.memory.mb": "1024",
+        "mapreduce.reduce.memory.mb": "1024"
+      },
+      "combineText": false,
+      "useCombiner": false,
+      "buildV9Directly": true,
+      "numBackgroundPersistThreads": 0,
+      "forceExtendableShardSpecs": true,
+      "useExplicitVersion": false,
+      "allowedHadoopPrefix": [],
+      "logParseExceptions": false,
+      "maxParseExceptions": 0,
+      "useYarnRMJobStatusFallback": true
+    },
+    "uniqueId": "29d40e48e4774bfa998abc2c2de54a44"
+  },
+  "hadoopDependencyCoordinates": [
+    "org.apache.hadoop:hadoop-client:2.8.3"
+  ],
+  "classpathPrefix": null,
+  "context": {
+    "forceTimeChunkLock": true
+  },
+  "groupId": "index_hadoop_wikipedia_2020-01-07T10:13:36.003Z",
+  "dataSource": "wikipedia",
+  "resource": {
+    "availabilityGroup": "index_hadoop_wikipedia_2020-01-07T10:13:36.003Z",
+    "requiredCapacity": 1
+  }
+}

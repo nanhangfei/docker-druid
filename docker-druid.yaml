@@ -10,9 +10,14 @@ spec:
       labels:                                      
         app: docker-druid
     spec:
+      hostAliases:
+      - ip: "192.168.8.207"
+        hostnames:
+        - "dt-master"
       containers:                                  
       - name: druid
-        image: fokkodriesprong/docker-druid:version-0.16.0
+        image: registry.cn-hangzhou.aliyuncs.com/thundersdata-public/docker-druid:hdfs
+        imagePullPolicy: Always
         ports:
         - name: coordinator
           containerPort: 8081                                                                  
