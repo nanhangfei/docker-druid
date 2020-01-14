@@ -16,6 +16,7 @@ RUN curl -fsLS "https://www.apache.org/dyn/closer.cgi?filename=/zookeeper/zookee
     && mv zookeeper-$ZOOKEEPER_VERSION zk
 
 ADD config/common.runtime.properties conf/druid/single-server/micro-quickstart/_common/common.runtime.properties
+ADD config/middleManager/runtime.properties conf/druid/single-server/micro-quickstart/middleManager/runtime.properties
 
 RUN mkdir -p conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
 ADD hadoop_xml/*.xml conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
