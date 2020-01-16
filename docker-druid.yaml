@@ -10,6 +10,20 @@ spec:
       labels:                                      
         app: docker-druid
     spec:
+      volumes:
+        - name: "opt"
+          hostPath:  
+            path: "/dt/nfs/druid/opt",
+            type: Directory
+        - name: "tmp"
+          hostPath:  
+            path: "/dt/nfs/druid/tmp",
+            type: Directory
+      volumeMounts:
+        - name:  "opt"
+          mountPath:  "/opt/druid/var"
+        - name:  "/tmp"
+          mountPath:  "/tmp"
       hostAliases:
       - ip: "192.168.8.207"
         hostnames:
@@ -57,3 +71,22 @@ spec:
   type: NodePort
   selector:      
    app: docker-druid
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: docker-druid
+  namespace: td-data
+  labels:
+    k8s-app: docker-druid
+  annotations:
+    configuration.konghq.com: configuration-kongingress
+spec:
+  rules:
+  - host: docker-druid.sw.thundersdata.com
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: docker-druid
+          servicePort: 8888
