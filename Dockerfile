@@ -3,6 +3,10 @@ FROM openjdk:8
 ENV DRUID_VERSION 0.16.0-incubating
 ENV ZOOKEEPER_VERSION 3.4.14
 
+# 安装telnet
+RUN apt-get update
+RUN apt install telnet
+
 # Get Druid
 RUN mkdir -p /tmp \
     && cd /tmp/ \
@@ -23,7 +27,11 @@ ADD config/common.runtime.properties conf/druid/single-server/micro-quickstart/_
 ADD config/middleManager/runtime.properties conf/druid/single-server/micro-quickstart/middleManager/runtime.properties
 
 RUN mkdir -p conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
-ADD hadoop_xml/*.xml conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
+
+# cdh上hadoop3.0.0的配置文件
+#ADD cdh-hadoop_xml/*.xml conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
+#  本地docker-druid-hadoop-demo的hadoop2.8.3的配置文件
+ADD docker-druid-hadoop-demo_xml/*.xml conf/druid/single-server/micro-quickstart/_common/hadoop-xml/
 
 # RUN bash -c "./bin/start-micro-quickstart &" && \
 #    ./bin/post-index-task --file quickstart/tutorial/wikipedia-index.json --url http://localhost:8081 --submit-timeout 600

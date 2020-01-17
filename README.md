@@ -22,7 +22,15 @@ To build the docker image yourself
 git clone https://github.com/Fokko/docker-druid.git
 cd docker-druid
 docker build -t docker-druid:hdfs .
-docker run --rm -i -p 8888:8888 docker-druid:hdfs
+
+## 配置Druid要访问的元数据库MySQL和HDFS地址
+在本地MAC的/etc/hosts添加如下配置
+192.168.1.23 docker-druid-mysql
+192.168.1.23 druid-hadoop-demo
+
+192.168.1.23是我的mac的固定ip地址
+## 运行Druid
+docker run --rm -i -p 8888:8888 docker-druid:local
 ```
 ## 推送到阿里云镜像仓库
 ```
