@@ -15,6 +15,10 @@ WORKDIR /opt/druid/
 RUN curl -fsLS "https://www.apache.org/dyn/closer.cgi?filename=/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz&action=download" | tar xvz \
     && mv zookeeper-$ZOOKEEPER_VERSION zk
 
+# MySQL
+RUN curl -fsLS "https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.48.tar.gz" | tar xvz \
+    && mv mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar extensions/mysql-metadata-storage/
+
 ADD config/common.runtime.properties conf/druid/single-server/micro-quickstart/_common/common.runtime.properties
 ADD config/middleManager/runtime.properties conf/druid/single-server/micro-quickstart/middleManager/runtime.properties
 
